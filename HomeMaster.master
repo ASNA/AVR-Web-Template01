@@ -1,0 +1,69 @@
+﻿<%@ Master Language="AVR" AutoEventWireup="false" CodeFile="HomeMaster.master.vr" Inherits="HomeMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en" >
+<head runat="server">
+    <title>Hello, world!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <%
+    If (HttpContext.Current.IsDebuggingEnabled)     
+    %>
+    <link rel="stylesheet" href="<%=Page.ResolveUrl("~")%>assets/css/global.css">
+    <%
+    Else
+    %>
+
+    <%
+    EndIf 
+    %>
+
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <%
+    If (HttpContext.Current.IsDebuggingEnabled)     
+    %>
+    <div>
+        <small style="padding: 6px" class="alert-danger">Debugging is enabled</small>
+    </div>
+    <%
+    EndIf 
+    %>
+
+    
+    <form id="form1" runat="server">        
+        <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-end">
+              <div class="mr-auto p2">
+                 <a class="navbar-brand" href="#">ASNA Example</a>
+               </div>
+              <div class="p2">
+                <% If (*This.ChildPage <> 'login.aspx') %>
+                    <% If (Request.IsAuthenticated) %>                
+                        Welcome back, <asp:LoginName ID="LoginName1" runat="server" />&nbsp;<asp:LoginStatus ID="LoginStatus1" cssclass="p-2" runat="server" />
+                    <% Else  %>
+                        
+                    <% EndIf %>
+                <% EndIf %>
+              </div>
+        </nav>
+
+
+        <div>
+            <asp:contentplaceholder id="content" runat="server">
+            </asp:contentplaceholder>
+        </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <asp:contentplaceholder id="pageScripts" runat="server">
+    </asp:contentplaceholder>
+
+    </form>
+    </body>
+</html>
